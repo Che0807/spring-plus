@@ -1,4 +1,4 @@
-package org.example.expert.config;
+package org.example.expert.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -62,5 +62,9 @@ public class JwtUtil {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
+    }
+
+    public String extractUserId(String token) {
+        return extractClaims(token).getSubject();
     }
 }
