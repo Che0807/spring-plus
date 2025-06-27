@@ -15,11 +15,11 @@ public class QTodoRepositoryImpl implements QTodoRepository{
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Optional<Todo> findByIdWithUser(Long todoId) {
+    public Optional<Todo> findByIdWithUser(Long id) {
         Todo result = queryFactory
                 .selectFrom(todo)
                 .leftJoin(todo.user, user).fetchJoin()
-                .where(todo.id.eq(todoId))
+                .where(todo.id.eq(id))
                 .fetchOne();
 
         return Optional.ofNullable(result);
